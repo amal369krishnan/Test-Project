@@ -31,9 +31,9 @@ use postman:
           In Body(Text--> JSON)
           {"id":"_id"}
           
-5.(Post)http://localhost:8090/api/deleteMenu/
+5.(Delete)http://localhost:8090/api/deleteMenu/
           In Body(Text--> JSON)
-          {"id":"122345"}
+          {"id":"_id"}
           
 6.(Post)http://localhost:8090/api/logout/
           In Body(Text--> JSON)
