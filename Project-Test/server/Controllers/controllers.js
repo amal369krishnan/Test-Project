@@ -8,11 +8,16 @@ const listing = async (req, res) => {
 };
 /* Api for Signup */
 const signup = async (req, res) => {
-	const userData = req.body;
+	let date_ob = new Date();
+	let hours = date_ob.getHours();
+	let minutes = date_ob.getMinutes();
+	date = hours + "." + minutes;
 	const createUser = new models({
-		user: userData.user,
-		signup: "Successfully Sign up",
-		operation:"signup"
+		user: req.body.user,
+		password: req.body.password,
+		signup: "signup at",
+		operation: "signup",
+		date: date,
 	});
 	try {
 		const data = await createUser.save();
@@ -53,7 +58,7 @@ const createMenu = async (req, res) => {
 		return res.status(404).send("Sign Up first");
 	}
 	if (data) {
-		data.createmessage = "Created a menu";
+		data.createmessage = "create a menu";
 		data.logout = "";
 		data.operation = "createMenu";
 		try {
@@ -75,7 +80,7 @@ const deleteMenu = async (req, res) => {
 		return res.status(404).send("Sign Up first");
 	}
 	if (data) {
-		data.createmessage = "deleted a menu";
+		data.createmessage = "delete a menu";
 		data.logout = "";
 		data.operation = "deleteMenu";
 		try {
@@ -97,7 +102,7 @@ const logout = async (req, res) => {
 		return res.status(404).send("Sign Up first");
 	}
 	if (data) {
-		data.logout = "Successfully logged out at ";
+		data.logout = "logout at ";
 		let date_ob = new Date();
 		let hours = date_ob.getHours();
 		let minutes = date_ob.getMinutes();

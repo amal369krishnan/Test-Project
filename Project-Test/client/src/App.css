@@ -1,38 +1,64 @@
-.App {
-  text-align: center;
+* {
+	box-sizing: border-box;
+}
+.container {
+	background-color: rgb(126, 148, 155);
+	width: 100%;
+	border-radius: 8px;
+	text-align: center;
+	float: right;
+}
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+.column {
+	float: left;
+	width: 50%;
+	padding: 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.signup {
+	color: brown;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.login {
+	color: cadetblue;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+input[type="text"],
+input[type="password"] {
+	width: 20em;
+	height: 2em;
 }
 
-.App-link {
-  color: #61dafb;
+button {
+	width: 10em;
+	height: 3em;
+	background-color: darkslategray;
+	color: darkseagreen;
+	border-radius: 8px;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+		Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button:hover {
+	color: coral;
+}
+
+.feeds {
+	text-align: center;
+}
+
+.logout-btn {
+	font-size: large;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-weight: bold;
+	text-decoration: underline;
+	color: darkturquoise;
+}
+
+.logout-btn:hover{
+	color: red;
 }

@@ -91,31 +91,31 @@ const Activity = () => {
 			feeds.map((v, k) => {
 				if (v[k].operation === "signup") {
 					result = (
-						<p key={k}>
+						<p key={k} className="feeds">
 							{v[k].user} {v[k].signup} {v[k].date}
 						</p>
 					);
 				} else if (v[k].operation === "login") {
 					result = (
-						<p>
+						<p className="feeds">
 							{v[k].user} {v[k].login} {v[k].date}
 						</p>
 					);
 				} else if (v[k].operation === "createMenu") {
 					result = (
-						<p>
+						<p className="feeds">
 							{v[k].user} {v[k].createmessage}
 						</p>
 					);
 				} else if (v[k].operation === "deleteMenu") {
 					result = (
-						<p>
+						<p className="feeds">
 							{v[k].user} {v[k].createmessage}
 						</p>
 					);
 				} else if (v[k].operation === "logout") {
 					result = (
-						<p>
+						<p className="feeds">
 							{v[k].user} {v[k].logout} {v[k].date}
 						</p>
 					);
@@ -128,7 +128,7 @@ const Activity = () => {
 
 	return (
 		<div>
-			<h1>Activity Logs</h1>
+			<h1 className="container">Activity Logs</h1>
 			<div>{container}</div>
 		</div>
 	);
