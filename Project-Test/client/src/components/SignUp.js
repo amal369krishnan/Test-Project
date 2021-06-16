@@ -12,7 +12,6 @@ const SignUp = () => {
 
 	const signin = (e) => {
 		e.preventDefault();
-
 		axios.post("http://localhost:8090/api", { user, password }).then((res) => {
 			setTrig(true);
 		});
@@ -31,7 +30,7 @@ const SignUp = () => {
 		});
 		if (value[0].user === user && value[0].password === password) {
 			setInvalid("");
-			setMenuOption("create")
+			setMenuOption("create");
 			const id = value[0]._id;
 			axios
 				.post("http://localhost:8090/api/login/", {

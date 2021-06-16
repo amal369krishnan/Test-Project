@@ -1,129 +1,34 @@
 import React, { useEffect, useState } from "react";
 import socket from "socket.io-client";
-//import axios from "axios";
+import axios from "axios";
 const io = socket("http://localhost:8090/");
 
 const Activity = () => {
 	const [feeds, setfeedsData] = useState([]);
 	const [container, setContainer] = useState([]);
-	let result;
 
 	io.on("login", (data) => {
-		switch (data.operation) {
-			case "signup":
-				setfeedsData([
-					...feeds,
-					[
-						...feeds,
-						{
-							user: data.user,
-							signup: data.signup,
-							date: data.date,
-							operation: data.operation,
-						},
-					],
-				]);
-				break;
-			case "login":
-				setfeedsData([
-					...feeds,
-					[
-						...feeds,
-						{
-							user: data.user,
-							login: data.login,
-							date: data.date,
-							operation: data.operation,
-						},
-					],
-				]);
-				break;
-
-			case "createMenu":
-				setfeedsData([
-					...feeds,
-					[
-						...feeds,
-						{
-							user: data.user,
-							createmessage: data.createmessage,
-							operation: data.operation,
-						},
-					],
-				]);
-				break;
-
-			case "deleteMenu":
-				setfeedsData([
-					...feeds,
-					[
-						...feeds,
-						{
-							user: data.user,
-							createmessage: data.createmessage,
-							operation: data.operation,
-						},
-					],
-				]);
-				break;
-
-			case "logout":
-				setfeedsData([
-					...feeds,
-					[
-						...feeds,
-						{
-							user: data.user,
-							logout: data.logout,
-							date: data.date,
-							operation: data.operation,
-						},
-					],
-				]);
-				break;
-			default:
-				break;
-		}
+		setfeedsData(data);
 	});
-
 	useEffect(() => {
-		setContainer(
-			feeds.map((v, k) => {
-				if (v[k].operation === "signup") {
-					result = (
-						<p key={k} className="feeds">
-							{v[k].user} {v[k].signup} {v[k].date}
-						</p>
-					);
-				} else if (v[k].operation === "login") {
-					result = (
-						<p className="feeds">
-							{v[k].user} {v[k].login} {v[k].date}
-						</p>
-					);
-				} else if (v[k].operation === "createMenu") {
-					result = (
-						<p className="feeds">
-							{v[k].user} {v[k].createmessage}
-						</p>
-					);
-				} else if (v[k].operation === "deleteMenu") {
-					result = (
-						<p className="feeds">
-							{v[k].user} {v[k].createmessage}
-						</p>
-					);
-				} else if (v[k].operation === "logout") {
-					result = (
-						<p className="feeds">
-							{v[k].user} {v[k].logout} {v[k].date}
-						</p>
-					);
-				}
-
-				return result;
-			})
-		);
+		axios.get("http://localhost:8090/api/operation").then((res) => {
+			setContainer(
+				res.data.length !== 0 ? (
+					res.data[0].operation.map((v, k) => {
+						return (
+							<div>
+								<p key={k} className="feeds">
+									{v}
+								</p>
+							</div>
+						);
+					})
+				) : (
+					<p></p>
+				)
+			);
+		});
+		setContainer();
 	}, [feeds]);
 
 	return (

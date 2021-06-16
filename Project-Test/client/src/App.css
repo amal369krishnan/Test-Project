@@ -49,6 +49,7 @@ button:hover {
 
 .feeds {
 	text-align: center;
+	
 }
 
 .logout-btn {
@@ -59,6 +60,6 @@ button:hover {
 	color: darkturquoise;
 }
 
-.logout-btn:hover{
+.logout-btn:hover {
 	color: red;
 }
